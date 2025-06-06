@@ -1,0 +1,56 @@
+.notification {
+  position: relative;
+  padding: 16px 20px;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  // Варианты по умолчанию
+  &--info {
+    background-color: rgba(253, 238, 239, 1);
+    color: rgba(225, 40, 40, 1);
+  }
+
+  &--masseges {
+    background-color: rgba(250, 222, 224, 1);
+    color: rgba(41, 50, 68, 1);
+  }
+
+  &--success {
+    background-color: #ebfbee;
+    color: #2b8a3e;
+  }
+
+  &--warning {
+    background-color: #fff9db;
+    color: #e67700;
+  }
+
+  &--error {
+    background-color: #fff5f5;
+    color: #c92a2a;
+  }
+
+  .content {
+    flex: 1;
+    padding-right: 8px;
+  }
+
+  .closeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    margin-left: 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
