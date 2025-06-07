@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.input {
+  padding: 10px 12px;
+  border: 1px solid rgba(100, 71, 207, 1);
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  resize: vertical;
+
+  &:focus {
+    outline: none;
+    border-color: #4e7fff;
+    box-shadow: 0 0 0 2px rgba(78, 127, 255, 0.2);
+  }
+
+  &.error {
+    border-color: #ef4444;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.errorMessage {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
