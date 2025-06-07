@@ -16,6 +16,7 @@ interface RadioGroupProps {
   direction?: 'horizontal' | 'vertical';
   className?: string;
   optionClassName?: string;
+  responsive?: boolean; // Новый пропс для адаптивности
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -27,6 +28,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   direction = 'vertical',
   className,
   optionClassName,
+  responsive = true, // По умолчанию включена адаптивность
 }) => {
   const handleChange = (value: string) => {
     onChange(value);
@@ -36,7 +38,11 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     <div className={`${styles.container} ${className || ''}`}>
       {label && <div className={styles.groupLabel}>{label}</div>}
       
-      <div className={`${styles.options} ${styles[direction]}`}>
+      <div 
+        className={`${styles.options} ${styles[direction]} ${
+          responsive ? styles.responsive : ''
+        }`}
+      >
         {options.map((option) => (
           <label
             key={option.value}
@@ -53,9 +59,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
               disabled={option.disabled}
               className={styles.radioInput}
             />
-            <span 
-              className={styles.customRadio}
-            />
+            <span className={styles.customRadio} />
             <span className={styles.radioText}>{option.label}</span>
           </label>
         ))}
