@@ -12,11 +12,10 @@ export const uploadImages = async (formData: FormData) => {
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
-  
   return response.json();
 };
 
-export const submitSurvey = async (taskId: string, answers: Record<string, any>) => {
+export const submitSurvey = async (taskId: string, surveyData: {survey: any}) => {
   const response = await fetch(`${API_URL}/submit-survey`, {
     method: 'POST',
     headers: {
@@ -25,7 +24,7 @@ export const submitSurvey = async (taskId: string, answers: Record<string, any>)
     },
     body: JSON.stringify({
       task_id: taskId,
-      answers,
+      ...surveyData
     }),
   });
 

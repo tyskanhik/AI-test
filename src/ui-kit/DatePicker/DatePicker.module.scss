@@ -2,13 +2,14 @@
   position: relative;
   margin-bottom: 1.5rem;
   max-width: 100%;
+  font-family: 'CirceRounded', sans-serif;
 }
 
 .label {
   display: block;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
-  color: #374151;
+  color: #000;
   font-weight: 500;
 }
 
@@ -22,8 +23,8 @@
   align-items: center;
   justify-content: center;
   padding: 0.1rem 0.5rem;
-  border: 1px solid rgba(160, 169, 184, 1);
-  border-radius: 12px;
+  border: 1px solid #6447CF;
+  border-radius: 6px;
   background-color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -31,22 +32,22 @@
   width: 100%;
 
   &:hover {
-    border-color: #9ca3af;
+    border-color: #6447CF;
   }
 
   &:focus-within {
-    border-color: #4e7fff;
-    box-shadow: 0 0 0 1px #4e7fff;
+    border-color: #6447CF;
+    box-shadow: 0 0 0 1px #6447CF;
   }
 }
 
 .dateText {
-  color: rgba(41, 50, 68, 1);
+  color: #000;
   font-size: 0.875rem;
 }
 
 .placeholder {
-  color: rgba(68, 83, 113, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 0.875rem;
 }
 
@@ -69,6 +70,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 0.5rem;
   background: #fff;
+  font-family: 'CirceRounded', sans-serif;
 
   .react-datepicker__header {
     background: #fff;
@@ -81,19 +83,20 @@
     line-height: 2rem;
     margin: 0.1rem;
     border-radius: 4px;
+    color: #000;
 
     &:hover {
       background-color: #f3f4f6;
     }
 
     &--selected {
-      background-color: #4e7fff;
+      background-color: #000000;
       color: #fff;
     }
 
     &--today {
       font-weight: bold;
-      color: #4e7fff;
+      color: #6447CF;
     }
   }
 

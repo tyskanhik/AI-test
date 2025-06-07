@@ -1,0 +1,94 @@
+@import '../../assets/styles/variables.scss';
+
+.container {
+  width: 100%;
+}
+
+.containerContent {
+  max-width: $breakpoint-test-desktop;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  
+  @media (max-width: $breakpoint-test-tablet) {
+    padding: 15px;
+  }
+  
+  @media (max-width: $breakpoint-test-mobile) {
+    padding: 10px;
+  }
+}
+
+.progressBar {
+  display: flex;
+  height: 15px;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  margin-bottom: 24px;
+  
+  .progressFilled {
+    background-color: $color-blue-100;
+  }
+  
+  .progressEmpty {
+    background-color: $color-blue-060;
+  }
+}
+
+.section {
+  display: grid;
+  gap: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: $color-surface1;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: $breakpoint-test-tablet) {
+    padding: 15px;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+}
+
+.notificationSection {
+  display: grid;
+  gap: 20px;
+
+  .notificationSectionElement {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}
+
+.question {
+  display: grid;
+  gap: 8px;
+  
+  @media (max-width: $breakpoint-test-tablet) {
+    margin-bottom: 15px;
+  }
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  
+  @media (max-width: $breakpoint-test-mobile) {
+    flex-direction: column;
+    gap: 10px;
+    
+    button {
+      width: 100% !important;
+    }
+  }
+
+  .navigationButton {
+    display: flex;
+    gap: 30px;
+  }
+}

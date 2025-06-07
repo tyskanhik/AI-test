@@ -63,6 +63,7 @@ const taskSlice = createSlice({
       .addCase(uploadTaskImages.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.taskId = action.payload;
+        console.log(state.taskId);
       })
       .addCase(uploadTaskImages.rejected, (state, action) => {
         state.status = 'failed';

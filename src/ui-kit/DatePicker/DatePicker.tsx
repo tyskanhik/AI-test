@@ -1,7 +1,11 @@
-import React, { forwardRef, useState, useRef } from 'react';
+import React, { forwardRef, useState, useRef, useEffect } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import { ru } from 'date-fns/locale/ru';
 import styles from './DatePicker.module.scss';
+
+registerLocale('ru', ru as any);
 
 interface DatePickerProps {
   label?: string;
@@ -32,6 +36,10 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     const datePickerRef = useRef<ReactDatePicker>(null);
+
+    useEffect(() => {
+      setDefaultLocale('ru');
+    }, []);
 
     const handleInputClick = () => {
       setIsOpen(!isOpen);
@@ -69,7 +77,6 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             <span className={value ? styles.dateText : styles.placeholder}>
               {formatDisplayDate(value!)}
             </span>
-            
           </div>
 
           {isOpen && (
@@ -82,6 +89,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               minDate={minDate}
               maxDate={maxDate}
               inline
+              locale="ru"
               calendarClassName={styles.calendar}
               wrapperClassName={styles.datePickerWrapper}
               onClickOutside={() => setIsOpen(false)}

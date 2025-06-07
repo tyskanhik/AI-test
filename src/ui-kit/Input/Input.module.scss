@@ -12,10 +12,12 @@
 
 .input {
   padding: 10px 12px;
-  border: 1px solid rgba(160, 169, 184, 1);
+  border: 1px solid rgba(100, 71, 207, 1);
   border-radius: 6px;
   font-size: 16px;
   transition: all 0.2s ease;
+  font-family: inherit;
+  resize: vertical;
 
   &:focus {
     outline: none;
@@ -30,6 +32,11 @@
   &.fullWidth {
     width: 100%;
   }
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 
 .errorMessage {

@@ -149,19 +149,19 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
 };
 
 // Иконка загрузки
-const UploadIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-    <polyline points="17 8 12 3 7 8" />
-    <line x1="12" y1="3" x2="12" y2="15" />
-  </svg>
-);
+// const UploadIcon = () => (
+//   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+//     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+//     <polyline points="17 8 12 3 7 8" />
+//     <line x1="12" y1="3" x2="12" y2="15" />
+//   </svg>
+// );
 
-// Иконка замены
-const ReplaceIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff">
-    <path d="M21 12a9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9z" />
-    <path d="M12 8v8" />
-    <path d="M8 12h8" />
-  </svg>
-);
+// // Иконка замены
+// const ReplaceIcon = () => (
+//   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff">
+//     <path d="M21 12a9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9z" />
+//     <path d="M12 8v8" />
+//     <path d="M8 12h8" />
+//   </svg>
+// );
