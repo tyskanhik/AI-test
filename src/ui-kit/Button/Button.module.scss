@@ -12,8 +12,12 @@
 
   // Цветовые варианты
   &--primary {
-    background-color: rgb(0, 126, 229);
+    background-color: rgba(69, 165, 246, 1);
     color: white;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(0, 126, 229, 1);
+  }
   }
 
   &--secondary {
@@ -50,5 +54,9 @@
 
   &:active:not(:disabled) {
     filter: brightness(0.8) drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+
+  img {
+    padding-left: 5px;
   }
 }
