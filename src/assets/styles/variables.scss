@@ -1,0 +1,102 @@
+// Breakpoints
+$breakpoint-tilda-mobile: 380px;
+$breakpoint-tilda-tablet: 640px;
+$breakpoint-tilda-desktop: 1200px;
+
+$breakpoint-test-mobile: 296px;
+$breakpoint-test-tablet: 600px;
+$breakpoint-test-desktop: 904px;
+
+// Typography
+@font-face {
+  font-family: 'Circe Rounded';
+  src: url('./fonts/CirceRounded-Regular.otf') format('otf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Circe Rounded';
+  src: url('./fonts/CirceRounded-Bold.otf') format('otf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CirceRounded';
+  src: url('./fonts/CirceRounded-ExtraLight.otf') format('otf');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CirceRounded';
+  src: url('./fonts/CirceRounded-Light.otf') format('otf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CirceRounded';
+  src: url('./fonts/CirceRounded-Regular.otf') format('otf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CirceRounded';
+  src: url('./fonts/CirceRounded-Thin.otf') format('otf');
+  font-weight: 100;
+  font-style: normal;
+}
+
+// Text styles
+$text-title-3: (
+  font-family: 'Circe Rounded',
+  font-size: 20px,
+  font-weight: 400,
+  line-height: 106%,
+);
+
+$text-regular-16: (
+  font-family: 'Circe Rounded',
+  font-size: 16px,
+  font-weight: 400,
+  line-height: 135%,
+);
+
+$text-regular-14: (
+  font-family: 'Circe Rounded',
+  font-size: 14px,
+  font-weight: 400,
+  line-height: 140%,
+);
+
+$text-regular-12: (
+  font-family: 'Circe Rounded',
+  font-size: 12px,
+  font-weight: 400,
+  line-height: 135%,
+);
+
+$text-bold-14: (
+  font-family: 'Circe Rounded',
+  font-size: 14px,
+  font-weight: 700,
+  line-height: 135%,
+);
+
+// Colors
+$color-surface1: #FFFFFF;
+$color-default: #293244;
+$color-muted: #A0A9B8;
+$color-surface5: #D0D4DC;
+$color-surface3: #F6F6F8;
+$color-disabled: rgba(68, 83, 113, 0.5);
+$color-disabled-btn: rgba(68, 83, 113, 0.1);
+$color-blue-100: #45A5F6;
+$color-blue-060: #C7E4FC;
+$color-blue-050: #DAEDFD;
+$color-red-110: #E12828;
+$color-red-050: #FADEE0;
+$color-violet-110: #6447CF;

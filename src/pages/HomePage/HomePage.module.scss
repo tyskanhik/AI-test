@@ -1,0 +1,97 @@
+@import '../../assets/styles/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background-color: $color-surface3;
+}
+
+.title {
+  @each $property, $value in $text-title-3 {
+    #{$property}: $value;
+  }
+  color: $color-default;
+  margin-bottom: 32px;
+  max-width: 800px;
+
+  @media (max-width: $breakpoint-tilda-tablet) {
+    font-size: 18px;
+  }
+}
+
+.content {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  background-color: $color-surface1;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: $breakpoint-test-mobile) {
+    padding: 24px;
+    width: 100%;
+  }
+}
+
+.description {
+  @each $property, $value in $text-regular-16 {
+    #{$property}: $value;
+  }
+  color: $color-default;
+}
+
+.imagePlaceholder {
+  width: 300px;
+  height: 200px;
+  background-image: url('../../assets/images/test-illustration.png');
+  background-position: center;
+  background-size: cover;
+  border: 2px dashed $color-blue-100;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-muted;
+
+  @media (max-width: $breakpoint-test-mobile) {
+    width: 100%;
+    height: 150px;
+  }
+}
+
+.illustration {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 24px;
+}
+
+.instructionsList {
+  text-align: left;
+  padding-left: 20px;
+  margin: 0;
+  font: map-get($text-regular-16, font-family);
+  font-weight: map-get($text-regular-16, font-weight);
+  font-size: map-get($text-regular-16, font-size);
+  line-height: map-get($text-regular-16, line-height);
+  color: $color-default;
+
+  li {
+    margin-bottom: 8px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: $breakpoint-test-tablet) {
+    font-size: 14px;
+    padding-left: 15px;
+  }
+}
