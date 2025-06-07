@@ -65,7 +65,7 @@ export const ReportStatusPage: React.FC = () => {
     };
 
     // Таймер для моковых данных (30 секунд)
-    timeoutRef.current = setTimeout(switchToMockData, 1500);
+    timeoutRef.current = setTimeout(switchToMockData, 30000);
 
     const checkStatus = async () => {
       try {
