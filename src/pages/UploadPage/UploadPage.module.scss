@@ -1,0 +1,105 @@
+@import '../../assets/styles/variables.scss';
+
+.container {
+  width: 100%;
+}
+
+.containerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.progressBar {
+  display: flex;
+  height: 15px;
+  border-radius: 8px 8px 0 0  ;
+  overflow: hidden;
+  margin-bottom: 24px;
+  
+  .progressFilled {
+    background-color: $color-blue-100;
+  }
+  
+  .progressEmpty {
+    background-color: $color-blue-060;
+  }
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.notificationWrapper {
+  margin-bottom: 32px;
+}
+
+.uploadGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    
+    .uploadBlock {
+      padding: 12px;
+      
+      .uploadTitle {
+        font-size: 16px;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.uploadBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid $color-surface5;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.uploadTitle {
+  font-weight: 500;
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid $color-surface5;
+}
+
+.errorWrapper {
+  margin: 0 auto;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid $color-surface5;
+}
+
+.errorNotification {
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}

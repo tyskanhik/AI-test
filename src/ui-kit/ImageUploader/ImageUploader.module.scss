@@ -31,6 +31,11 @@
 }
 
 .uploadIcon {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
   color: #64748b;
   background-color: rgba(218, 237, 253, 1);
   border-radius: 8px;
@@ -40,6 +45,11 @@
     transform: translateY(-3px);
     color: #4e7fff;
   }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
 }
 
 .replaceIcon {

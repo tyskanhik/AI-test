@@ -3,6 +3,8 @@ import styles from './ImageUploader.module.scss';
 import { Loader } from '../Loader/Loader';
 import { Text } from '../Text/Text';
 import { Notification } from '../Notification/Notification';
+import uploadIcon from '../../assets/images/UploadIcon.svg'
+import replaceIcon from '../../assets/images/ReplaceIcon.svg'
 
 interface ImageUploaderProps {
   onFileSelect: (file: File) => void;
@@ -18,8 +20,8 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
   onFileSelect,
   uploadText = 'Нажмите для загрузки',
   className,
-  width = 200,
-  height = 200,
+  width = 100,
+  height = 100,
   borderRadius = 12,
   showReplaceIcon = true,
 }) => {
@@ -74,12 +76,12 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
   const triggerFileInput = () => fileInputRef.current?.click();
 
   const containerStyle = {
-    width: typeof width === 'number' ? `${width}px` : width,
+    width: typeof width === 'number' ? `${width}%` : width,
   };
 
   const uploadAreaStyle = {
     width: '100%',
-    height: typeof height === 'number' ? `${height}px` : height,
+    height: typeof height === 'number' ? `${height}%` : height,
     borderRadius: typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,
   };
 
@@ -113,12 +115,12 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
           <>
             {!previewUrl && (
               <div className={styles.uploadIcon}>
-                <UploadIcon />
+                <img src={uploadIcon} alt="Добавить" className={styles.icon} />
               </div>
             )}
             {previewUrl && showReplaceIcon && (
               <div className={styles.replaceIcon}>
-                <ReplaceIcon />
+                <img src={replaceIcon} alt="Заменить" className={styles.icon} />
               </div>
             )}
           </>

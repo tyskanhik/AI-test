@@ -28,7 +28,7 @@ export const Notification: React.FC<NotificationProps> = ({
   variant = 'info',
   children,
   borderRadius = 8,
-  width = 200,
+  width = 20,
   backgroundColor,
   textColor,
   className,
@@ -45,7 +45,7 @@ export const Notification: React.FC<NotificationProps> = ({
       ? `${borderRadius}px` 
       : borderRadius,
     ...style,
-    width: typeof width === 'number' ? `${width}px` : width
+    width: typeof width === 'number' ? `${width}vw` : width
   };
 
   const notificationClasses = classNames(

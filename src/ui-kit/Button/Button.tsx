@@ -20,6 +20,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   borderRadius?: string | number;
   fontSize?: string | number;
   disabled?: boolean;
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
   onClick?: () => void;
 }
 
@@ -32,6 +34,8 @@ export const Button: React.FC<ButtonProps> = ({
   borderRadius = '22px', 
   fontSize = '16px',
   disabled = false,
+  icon,
+  iconPosition = 'left',
   onClick,
   ...props
 }) => {
@@ -63,7 +67,13 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       {...props}
     >
+      {icon && iconPosition === 'left' && (
+        <span className={styles.iconLeft}>{icon}</span>
+      )}
       {text}
+      {icon && iconPosition === 'right' && (
+        <span className={styles.iconRight}>{icon}</span>
+      )}
     </button>
   );
 };
