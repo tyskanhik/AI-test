@@ -36,16 +36,24 @@ export const submitSurvey = async (taskId: string, surveyData: {survey: any}) =>
 };
 
 export const checkReportStatus = async (taskId: string) => {
-  const response = await fetch(`${API_URL}/report/${taskId}`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-    },
-  });
+  try {
+    const response = await fetch(`https://sirius-draw-test-94500a1b4a2f.herokuapp.com/report/${taskId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      mode: 'cors',
+      credentials: 'include',
+    });
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error checking report status:', error);
+    throw error;
   }
-
-  return response.json();
 };
