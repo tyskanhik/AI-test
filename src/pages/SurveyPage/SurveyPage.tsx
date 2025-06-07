@@ -61,9 +61,31 @@ export const SurveyPage: React.FC = () => {
 
   const isFormValid = () => {
     const requiredFields = {
-
+      childName: survey.childName,
       childDOB: survey.childDOB,
+      childGender: survey.childGender,
+      parentName: survey.parentName,
 
+      q1_1: survey.q1_1,
+      q1_2: survey.q1_2,
+      q1_3: survey.q1_3,
+      q1_4: survey.q1_4,
+
+      q2_1: survey.q2_1,
+      q2_2: survey.q2_2,
+      q2_3: survey.q2_3,
+      q2_4: survey.q2_4,
+
+      q3_1: survey.q3_1,
+      q3_2: survey.q3_2,
+      q3_3: survey.q3_3,
+      q3_4: survey.q3_4,
+
+      q4_1: survey.q4_1,
+      q4_2: survey.q4_2,
+      q4_3: survey.q4_3,
+      q4_4: survey.q4_4,
+      
       emotionalState: survey.emotionalState
     };
 
@@ -89,7 +111,7 @@ export const SurveyPage: React.FC = () => {
 
       console.log(taskId, {survey: fullSurveyData});
       
-      navigate('/results');
+      navigate('/report-status', { state: { taskId } });
     } catch (error) {
       console.error('Error submitting survey:', error);
     } finally {
