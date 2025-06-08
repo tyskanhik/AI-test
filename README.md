@@ -29,7 +29,7 @@
 1. Клонируйте репозиторий:
 
 ```bash
-[git clone https://github.com/your-username/child-psychology-test.git](https://github.com/tyskanhik/AI-test.git)
+git clone https://github.com/tyskanhik/AI-test.git
 cd AI-test
 ```
 
