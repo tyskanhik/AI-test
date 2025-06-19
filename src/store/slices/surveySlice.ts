@@ -1,124 +1,84 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { submitSurveyApi } from "../../mocks/mockApi";
+
+export interface SurveyForm {
+  childName: string;
+  childDOB: string;
+  childGender: string;
+  parentName: string;
+  q1_1: string;
+  q1_2: string;
+  q1_3: string;
+  q1_4: string;
+  q2_1: string;
+  q2_2: string;
+  q2_3: string;
+  q2_4: string;
+  q3_1: string;
+  q3_2: string;
+  q3_3: string;
+  q3_4: string;
+  q4_1: string;
+  q4_2: string;
+  q4_3: string;
+  q4_4: string;
+  emotionalState: string;
+  additionalInfo1?: string;
+  additionalInfo2?: string;
+  additionalInfo3?: string;
+  additionalInfo4?: string;
+}
 
 interface SurveyState {
   taskId: string;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
   currentSection: number;
-  survey: {
-    childName: string;
-    childDOB: string;
-    childGender: string;
-    parentName: string;
-
-    q1_1: string;
-    q1_2: string;
-    q1_3: string;
-    q1_4: string;
-    q1_5: string;
-    q1_6: string;
-    q1_7: string;
-    q1_8: string;
-    q1_9: string;
-    q1_10: string;
-
-    q2_1: string;
-    q2_2: string;
-    q2_3: string;
-    q2_4: string;
-    q2_5: string;
-    q2_6: string;
-    q2_7: string;
-    q2_8: string;
-    q2_9: string;
-    q2_10: string;
-
-
-    q3_1: string;
-    q3_2: string;
-    q3_3: string;
-    q3_4: string;
-    q3_5: string;
-    q3_6: string;
-    q3_7: string;
-    q3_8: string;
-    q3_9: string;
-    q3_10: string;
-
-    q4_1: string;
-    q4_2: string;
-    q4_3: string;
-    q4_4: string;
-    q4_5: string;
-    q4_6: string;
-    q4_7: string;
-    q4_8: string;
-    q4_9: string;
-    q4_10: string;
-
-    emotionalState: string;
-
-    additionalInfo1?: string;
-    additionalInfo2?: string
-    additionalInfo3?: string
-    additionalInfo4?: string
-  };
-}
+  survey: SurveyForm;
+  lastSaved?: string;
+};
 
 const initialState: SurveyState = {
   taskId: '',
+  status: 'idle',
+  error: null,
   currentSection: 0,
   survey: {
     childName: '',
     childDOB: '',
     childGender: 'male',
     parentName: '',
-
     q1_1: '',
     q1_2: '',
     q1_3: '',
     q1_4: '',
-    q1_5: '3',
-    q1_6: '3',
-    q1_7: '3',
-    q1_8: '3',
-    q1_9: '3',
-    q1_10: '3',
-
     q2_1: '',
     q2_2: '',
     q2_3: '',
     q2_4: '',
-    q2_5: '3',
-    q2_6: '3',
-    q2_7: '3',
-    q2_8: '3',
-    q2_9: '3',
-    q2_10: '3',
-
     q3_1: '',
     q3_2: '',
     q3_3: '',
     q3_4: '',
-    q3_5: '3',
-    q3_6: '3',
-    q3_7: '3',
-    q3_8: '3',
-    q3_9: '3',
-    q3_10: '3',
-
     q4_1: '',
     q4_2: '',
     q4_3: '',
     q4_4: '',
-    q4_5: '3',
-    q4_6: '3',
-    q4_7: '3',
-    q4_8: '3',
-    q4_9: '3',
-    q4_10: '3',
-
     emotionalState: 'Удовлетворительное'
   }
 };
+
+type UpdateAnswerPayload = {
+  [K in keyof SurveyForm]?: SurveyForm[K];
+};
+
+export const submitSurvey = createAsyncThunk(
+  'survey/submit',
+  async ({ taskId, surveyData}: {taskId: string, surveyData: {survey: any}}) => {
+       const response = await submitSurveyApi(taskId, { survey: surveyData });
+       return response
+  }
+)
 
 export const surveySlice = createSlice({
   name: 'survey',
@@ -127,8 +87,14 @@ export const surveySlice = createSlice({
     setTaskId: (state, action: PayloadAction<string>) => {
       state.taskId = action.payload;
     },
-    updateAnswer: (state, action: PayloadAction<{field: string; value: string}>) => {
-      (state.survey as any)[action.payload.field] = action.payload.value;
+    updateAnswer: (state, action: PayloadAction<UpdateAnswerPayload>) => {
+      Object.assign(state.survey, action.payload);
+      state.lastSaved = new Date().toISOString();
+    },
+    updateField: (state, action: PayloadAction<{ field: keyof SurveyForm; value: string }>) => {
+      const { field, value } = action.payload;
+      state.survey[field] = value;
+      state.lastSaved = new Date().toISOString();
     },
     nextSection: (state) => {
       state.currentSection += 1;
@@ -142,9 +108,42 @@ export const surveySlice = createSlice({
         ...initialState,
         taskId: currentTaskId
       };
+    },
+    resetStatus: (state) => {
+      state.status = 'idle';
+      state.error = null;
     }
+  },
+  extraReducers: (bilder) => {
+    bilder
+      .addCase(submitSurvey.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(submitSurvey.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+      })
+      .addCase(submitSurvey.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload as string || 'Ошибка при отправке опроса';
+      });
   }
 });
 
-export const { setTaskId, updateAnswer, nextSection, prevSection, resetSurvey } = surveySlice.actions;
+export const selectSurvey = (state: { survey: SurveyState }) => state.survey.survey;
+export const selectSurveyStatus = (state: { survey: SurveyState }) => state.survey.status;
+export const selectSurveyError = (state: { survey: SurveyState }) => state.survey.error;
+export const selectCurrentSection = (state: { survey: SurveyState }) => state.survey.currentSection;
+export const selectLastSaved = (state: { survey: SurveyState }) => state.survey.lastSaved;
+
+export const { 
+  setTaskId, 
+  updateAnswer, 
+  updateField,
+  nextSection, 
+  prevSection, 
+  resetSurvey,
+  resetStatus
+} = surveySlice.actions;
+
 export default surveySlice.reducer;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setImage, uploadTaskImages } from '../../store/slices/taskSlice';
+import { setImagePreview, uploadTaskImages } from '../../store/slices/taskSlice';
 import { Text } from '../../ui-kit/Text/Text';
 import { Notification } from '../../ui-kit/Notification/Notification';
 import { ImageUploader } from '../../ui-kit/ImageUploader/ImageUploader';
@@ -13,18 +13,36 @@ import next from '../../assets/images/Next.svg'
 export const UploadPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { images, status, error } = useAppSelector((state) => state.task);
+  const { status, error } = useAppSelector((state) => state.task);
 
-  const handleImageUpload = (type: keyof typeof images, file: File) => {
-    dispatch(setImage({ type, file }));
+  const [localFiles, setLocalFiles] = useState<{
+    houseTreePerson: File | null;
+    nonexistentAnimal: File | null;
+    selfPortrait: File | null;
+  }>({
+    houseTreePerson: null,
+    nonexistentAnimal: null,
+    selfPortrait: null,
+  });
+
+  const handleImageUpload = (type: keyof typeof localFiles, file: File, previewUrl: string) => {
+    setLocalFiles(prev => ({...prev, [type]: file}));
+
+    dispatch(setImagePreview({
+      type,
+      preview: {
+        name: file.name,
+        previewUrl
+      }
+    }));  
   };
 
-  const allImagesUploaded = Object.values(images).every(img => img !== null);
+  const allImagesUploaded = Object.values(localFiles).every(img => img !== null);
 
   const handleSubmit = async () => {
     if (!allImagesUploaded) return;
     
-    const result = await dispatch(uploadTaskImages());
+    const result = await dispatch(uploadTaskImages(localFiles));
     
     if (uploadTaskImages.fulfilled.match(result)) {
       navigate('/survey');
@@ -52,7 +70,7 @@ export const UploadPage: React.FC = () => {
           {/* Дом/Дерево/Человек */}
           <div className={styles.uploadBlock}>
             <ImageUploader
-              onFileSelect={(file) => handleImageUpload('houseTreePerson', file)}
+              onFileSelect={(file, previewUrl) => handleImageUpload('houseTreePerson', file, previewUrl)}
               uploadText="Дом/Дерево/Человек"
               height="clamp(150px, 20vw, 250px)"
             />
@@ -61,7 +79,7 @@ export const UploadPage: React.FC = () => {
           {/* Несуществующее животное */}
           <div className={styles.uploadBlock}>
             <ImageUploader
-              onFileSelect={(file) => handleImageUpload('nonexistentAnimal', file)}
+              onFileSelect={(file, previewUrl) => handleImageUpload('nonexistentAnimal', file, previewUrl)}
               uploadText="Несуществующее животное"
               height="clamp(150px, 20vw, 250px)"
             />
@@ -70,7 +88,7 @@ export const UploadPage: React.FC = () => {
           {/* Автопортрет */}
           <div className={styles.uploadBlock}>
             <ImageUploader
-              onFileSelect={(file) => handleImageUpload('selfPortrait', file)}
+              onFileSelect={(file, previewUrl) => handleImageUpload('selfPortrait', file, previewUrl)}
               uploadText="Автопортрет"
               height="clamp(150px, 20vw, 250px)"
             />

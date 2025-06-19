@@ -1,14 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { uploadImages } from "../../api/Api";
+import { uploadImages } from "../../mocks/mockApi";
+
+interface ImagePreview {
+  name: string;
+  previewUrl: string;
+}
 
 interface TaskState {
   taskId: string | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
-  images: {
-    houseTreePerson: File | null;
-    nonexistentAnimal: File | null;
-    selfPortrait: File | null;
+  imagePreviews: {
+    houseTreePerson: ImagePreview | null;
+    nonexistentAnimal: ImagePreview | null;
+    selfPortrait: ImagePreview | null;
   };
 }
 
@@ -16,7 +21,7 @@ const initialState: TaskState = {
   taskId: null,
   status: 'idle',
   error: null,
-  images: {
+  imagePreviews: {
     houseTreePerson: null,
     nonexistentAnimal: null,
     selfPortrait: null,
@@ -25,15 +30,16 @@ const initialState: TaskState = {
 
 export const uploadTaskImages = createAsyncThunk(
   'task/uploadImages',
-  async (_, { getState }) => {
-    const state = getState() as { task: TaskState };
-    const { images } = state.task;
-    
+  async ( files: {
+    houseTreePerson: File | null;
+    nonexistentAnimal: File | null;
+    selfPortrait: File | null;
+  }, _) => {
     const formData = new FormData();
-    if (images.houseTreePerson) formData.append('files', images.houseTreePerson);
-    if (images.nonexistentAnimal) formData.append('files', images.nonexistentAnimal);
-    if (images.selfPortrait) formData.append('files', images.selfPortrait);
-    
+    if (files.houseTreePerson) formData.append('files', files.houseTreePerson)
+    if (files.nonexistentAnimal) formData.append('files', files.nonexistentAnimal)
+    if (files.selfPortrait) formData.append('files', files.selfPortrait)
+
     const response = await uploadImages(formData);
     return response.task_id;
   }
@@ -43,12 +49,12 @@ const taskSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
-    setImage: (state, action: PayloadAction<{ 
-      type: keyof typeof initialState.images;
-      file: File 
+    setImagePreview: (state, action: PayloadAction<{ 
+      type: keyof typeof initialState.imagePreviews;
+      preview: ImagePreview | null;
     }>) => {
-      const { type, file } = action.payload;
-      state.images[type] = file;
+      const { type, preview } = action.payload;
+      state.imagePreviews[type] = preview;
     },
     clearError: (state) => {
       state.error = null;
@@ -63,7 +69,6 @@ const taskSlice = createSlice({
       .addCase(uploadTaskImages.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.taskId = action.payload;
-        console.log(state.taskId);
       })
       .addCase(uploadTaskImages.rejected, (state, action) => {
         state.status = 'failed';
@@ -72,5 +77,5 @@ const taskSlice = createSlice({
   },
 });
 
-export const { setImage, clearError, resetTask } = taskSlice.actions;
+export const { setImagePreview, clearError, resetTask } = taskSlice.actions;
 export default taskSlice.reducer;

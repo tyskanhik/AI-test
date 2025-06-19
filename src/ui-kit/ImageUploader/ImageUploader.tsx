@@ -7,7 +7,7 @@ import uploadIcon from '../../assets/images/UploadIcon.svg'
 import replaceIcon from '../../assets/images/ReplaceIcon.svg'
 
 interface ImageUploaderProps {
-  onFileSelect: (file: File) => void;
+  onFileSelect: (file: File, previewUrl: string) => void;
   uploadText?: string;
   className?: string;
   width?: number | string;
@@ -57,20 +57,30 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
     try {
       setIsLoading(true);
 
+      let newPreviewUrl: string | null = null;
+
       if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = () => setPreviewUrl(reader.result as string);
-        reader.readAsDataURL(file);
+        newPreviewUrl = await fileToBase64(file);
+        setPreviewUrl(newPreviewUrl);
       } else {
         setPreviewUrl(null);
       }
 
-      onFileSelect(file);
+      onFileSelect(file, newPreviewUrl || '');
     } catch (err) {
       setError('Ошибка при загрузке файла');
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
   };
 
   const triggerFileInput = () => fileInputRef.current?.click();

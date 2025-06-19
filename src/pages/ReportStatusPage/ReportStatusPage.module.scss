@@ -2,163 +2,164 @@
 
 .container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 20px;
-  gap: 20px;
-}
-
-.progressBar {
-  display: flex;
-  height: 15px;
-  border-radius: 8px 8px 0 0;
-  overflow: hidden;
-  margin-bottom: 24px;
-  
-  .progressFilled {
-    background-color: $color-blue-100;
-  }
-  
-  .progressEmpty {
-    background-color: $color-blue-060;
-  }
-}
-
-.errorContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 20px;
-  text-align: center;
-}
-
-.loaderContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 20px;
-  text-align: center;
-}
-
-.reportContainer {
-  width: 100%;
-  max-width: $breakpoint-test-desktop;
-  margin: 0 auto;
   padding: 40px 20px;
-  text-align: left;
+  background-color: $color-surface1;
 
-  @media (min-width: $breakpoint-test-tablet) {
+  &.reportView {
+    align-items: flex-start;
+    text-align: left;
     padding: 40px;
+
+    @media (max-width: $breakpoint-test-tablet) {
+      padding: 20px;
+    }
   }
 }
 
-.warningMessage {
-  color: orange;
-  margin-bottom: 30px;
-  padding: 10px;
-  background-color: rgba(orange, 0.1);
-  border-radius: 4px;
+.reportTitle {
+  color: $color-default;
+  margin-bottom: 24px;
 }
 
 .sectionTitle {
-  font-family: map-get($text-title-3, font-family);
-  font-size: map-get($text-title-3, font-size);
-  font-weight: map-get($text-title-3, font-weight);
-  line-height: map-get($text-title-3, line-height);
-  margin-bottom: 20px;
-  color: $color-default;
+  @extend .reportTitle;
+  margin: 32px 0 16px;
 }
 
 .subsectionTitle {
-  font-family: map-get($text-bold-14, font-family);
-  font-size: map-get($text-bold-14, font-size);
-  font-weight: map-get($text-bold-14, font-weight);
-  line-height: map-get($text-bold-14, line-height);
-  margin: 30px 0 15px;
   color: $color-default;
+  margin: 24px 0 12px;
 }
 
 .summaryList {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
-  margin-bottom: 30px;
+  margin: 0 0 32px 0;
+  width: 100%;
 
   li {
-    margin-bottom: 10px;
-    font-family: map-get($text-regular-16, font-family);
-    font-size: map-get($text-regular-16, font-size);
-    line-height: map-get($text-regular-16, line-height);
+    margin-bottom: 12px;
     color: $color-default;
 
     strong {
       font-weight: 700;
+      color: $color-blue-100;
     }
   }
 }
 
 .divider {
-  border: 0;
+  border: none;
   height: 1px;
   background-color: $color-surface5;
-  margin: 30px 0;
+  margin: 32px 0;
+  width: 100%;
 }
 
-.detailsTable {
+.scoresTable {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 30px;
-  font-family: map-get($text-regular-14, font-family);
-  font-size: map-get($text-regular-14, font-size);
-  line-height: map-get($text-regular-14, line-height);
+  margin-bottom: 32px;
 
   th, td {
-    padding: 12px;
-    border: 1px solid $color-surface5;
+    padding: 12px 16px;
     text-align: left;
+    border: 1px solid $color-surface5;
   }
 
   th {
     background-color: $color-surface3;
-    font-weight: 700;
+    font-weight: map-get($text-bold-14, font-weight);
+    color: $color-default;
   }
 
   tr:nth-child(even) {
     background-color: $color-surface3;
   }
+
+  @media (max-width: $breakpoint-test-tablet) {
+    font-size: map-get($text-regular-12, font-size);
+
+    th, td {
+      padding: 8px 12px;
+    }
+  }
+}
+
+.scoreBar {
+  font-family: monospace;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: $color-blue-100;
 }
 
 .conclusionText {
-  margin-bottom: 30px;
-  font-family: map-get($text-regular-16, font-family);
-  font-size: map-get($text-regular-16, font-size);
-  line-height: map-get($text-regular-16, line-height);
+  margin-bottom: 24px;
   color: $color-default;
+
+  strong {
+    color: $color-blue-100;
+  }
+}
+
+.recommendationsList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+
+  li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    color: $color-default;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 8px;
+      color: $color-blue-100;
+      font-size: 20px;
+    }
+  }
 }
 
 .buttons {
   display: flex;
-  gap: 20px;
+  justify-content: space-around;
+  gap: 16px;
   margin-top: 40px;
-  flex-direction: column;
+  width: 100%;
 
-  @media (min-width: $breakpoint-test-tablet) {
-    flex-direction: row;
+  @media (max-width: $breakpoint-test-tablet) {
+    flex-direction: column;
   }
 }
 
-.actionButton {
-  flex: 1;
-  max-width: 300px;
+.loadingState {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
 
-  @media (min-width: $breakpoint-test-tablet) {
-    flex: none;
+.errorState {
+  @extend .loadingState;
+}
+
+.notification {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 24px;
+
+  @media (max-width: $breakpoint-test-tablet) {
+    width: 90%;
   }
 }

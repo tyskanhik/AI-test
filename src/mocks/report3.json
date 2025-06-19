@@ -1,0 +1,27 @@
+{
+  "id": "ghi789",
+  "childName": "Иван",
+  "mainQualities": {
+    "house": "Тревожность и потребность в защите",
+    "animal": "Осторожность и наблюдательность",
+    "portrait": "Неуверенность в себе"
+  },
+  "detailedSections": {
+    "houseTreePerson": {
+      "generalConclusion": "Ребёнок испытывает потребность в дополнительной защите и поддержке."
+    },
+    "animal": {
+      "conclusion": "Наблюдательность сочетается с повышенной осторожностью."
+    },
+    "selfPortrait": {
+      "conclusion": "Заниженная самооценка, требуется поддержка взрослых."
+    }
+  },
+  "scores": {
+    "emotionalStability": 10,
+    "socialAdaptation": 12,
+    "selfRegulation": 9,
+    "communication": 14,
+    "selfEsteem": 8
+  }
+}

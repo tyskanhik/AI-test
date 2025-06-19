@@ -1,0 +1,27 @@
+{
+  "id": "abc123",
+  "childName": "Алексей",
+  "mainQualities": {
+    "house": "Чувство защищённости и потребность в стабильности",
+    "animal": "Воображение и наблюдательность",
+    "portrait": "Склонность к самокритике, стремление к одобрению взрослых"
+  },
+  "detailedSections": {
+    "houseTreePerson": {
+      "generalConclusion": "Ребёнок чувствует себя в семье защищённо, но может быть сдержан в выражении эмоций."
+    },
+    "animal": {
+      "conclusion": "У ребёнка хорошо развито воображение, он склонен к рефлексии."
+    },
+    "selfPortrait": {
+      "conclusion": "Ориентирован на внешнюю оценку, нуждается в поддержке."
+    }
+  },
+  "scores": {
+    "emotionalStability": 14,
+    "socialAdaptation": 16,
+    "selfRegulation": 12,
+    "communication": 18,
+    "selfEsteem": 11
+  }
+}
