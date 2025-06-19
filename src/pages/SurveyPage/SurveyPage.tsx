@@ -8,7 +8,6 @@ import { Input } from '../../ui-kit/Input/Input';
 import { DatePicker } from '../../ui-kit/DatePicker/DatePicker';
 import { RadioGroup } from '../../ui-kit/RadioGroup/RadioGroup';
 import { submitSurveyApi } from '../../mocks/mockApi';
-import { RootState } from '../../store/index';
 import styles from './SurveyPage.module.scss';
 import { useNavigate } from 'react-router-dom';
 import good from '../../assets/images/good.svg';
@@ -22,7 +21,7 @@ import { debounce } from 'lodash';
 export const SurveyPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { taskId } = useAppSelector((state: RootState) => state.task);
+  const { taskId } = useAppSelector(state => state.task);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   
   const { 

@@ -27,3 +27,16 @@ export const submitSurveyApi = async (taskId: string, surveyData: {survey: any})
 
   return { succes: true };
 };
+
+export const checkReportStatus = async (taskId: string) => {
+  await simulateNetworkDelay(5000);
+  
+  const report = reports.find(r => r.id === taskId);
+  if (!report) throw new Error('Report not found');
+  
+  console.log(report);
+  return {
+    status: 'ready',
+    report: report
+  };
+};
