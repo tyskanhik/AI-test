@@ -13,3 +13,17 @@ export const uploadImages = async (formData: FormData) => {
 
   return {task_id: randomReport.id}
 };
+
+export const submitSurveyApi = async (taskId: string, surveyData: {survey: any}) => {
+  await simulateNetworkDelay(2000);
+
+  const report = reports.find(r => r.id === taskId);
+
+  if (!report) throw new Error('Report not found');
+  
+  if(surveyData.survey.childName) {
+    report.childName = surveyData.survey.childName
+  };
+
+  return { succes: true };
+};

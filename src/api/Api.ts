@@ -37,7 +37,7 @@ export const submitSurvey = async (taskId: string, surveyData: {survey: any}) =>
 
 export const checkReportStatus = async (taskId: string) => {
   try {
-    const response = await fetch(`https://sirius-draw-test-94500a1b4a2f.herokuapp.com/report/${taskId}`, {
+    const response = await fetch(``, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
