@@ -1,0 +1,27 @@
+{
+  "id": "def456",
+  "childName": "Мария",
+  "mainQualities": {
+    "house": "Открытость и дружелюбие",
+    "animal": "Творческий подход и фантазия",
+    "portrait": "Уверенность в себе"
+  },
+  "detailedSections": {
+    "houseTreePerson": {
+      "generalConclusion": "Ребёнок открыт миру, имеет позитивный взгляд на семейные отношения."
+    },
+    "animal": {
+      "conclusion": "Ярко выраженные творческие способности и богатая фантазия."
+    },
+    "selfPortrait": {
+      "conclusion": "Адекватная самооценка, уверенность в своих силах."
+    }
+  },
+  "scores": {
+    "emotionalStability": 18,
+    "socialAdaptation": 20,
+    "selfRegulation": 15,
+    "communication": 19,
+    "selfEsteem": 17
+  }
+}
